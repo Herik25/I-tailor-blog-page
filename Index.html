@@ -3,9 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Itailor Blog Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- Placeholder for icons, might switch to SVG or simpler if needed -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    Blog Page
+    
+    <!-- Fullscreen Background -->
+    <div id="app-bg" class="app-bg"></div>
+
+    <!-- Header / Menu Toggle -->
+    <header class="main-header">
+        <button id="menu-toggle" class="menu-toggle_btn">
+            <span class="menu-text">MENU</span>
+            <div class="menu-icon-grid">
+                <span style="background-color: #D2B797;"></span><span style="background-color: #D2B797;"></span><span style="background-color: #D2B797;"></span>
+                <span style="background-color: #816732;"></span><span style="background-color: #D2B797;"></span><span style="background-color: #816732;"></span>
+                <span style="background-color: #816732;"></span><span style="background-color: #D2B797;"></span><span style="background-color: #816732;"></span>
+            </div>
+        </button>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <nav id="sidebar" class="sidebar">
+        <!-- Main Panel -->
+        <div class="sidebar-main">
+            <div class="sidebar-header">
+                <button id="close-btn" class="close-btn">
+                    <div class="close-icon">
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <span class="close-text">CLOSE</span>
+                </button>
+            </div>
+            
+            <div class="sidebar-content">
+                <ul id="nav-list" class="nav-list">
+                    <!-- Dynamic Content from JS -->
+                </ul>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                </div>
+                <div class="payment-icons">
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                </div>
+                <div class="shipping-info">
+                    <span>WORLDWIDE SHIPPING</span>
+                    <i class="fas fa-shipping-fast"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Submenu Panel -->
+        <div id="submenu-panel" class="submenu-panel">
+            <!-- Dynamic Content -->
+        </div>
+    </nav>
+    
+    <!-- Overlay -->
+    <div id="overlay" class="overlay"></div>
+
+    <script src="script.js"></script>
 </body>
 </html>

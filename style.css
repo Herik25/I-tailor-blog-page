@@ -1,0 +1,377 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+:root {
+    --primary-gold: #c5a47e;
+    --text-grey: #a89f91;
+    --bg-dark: #1e1e1e; /* Fallback */
+    --bg-sidebar: #1d1612; /* Deep brown/black from image */
+    --hover-gold: #d4af37;
+    --transition-speed: 0.4s;
+    --font-main: 'Lato', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: #f4f4f4; /* Placeholder body bg */
+    overflow-x: hidden;
+}
+
+/* Header / Menu Toggle */
+.main-header {
+    position: fixed;
+    top: 30px;
+    left: 40px;
+    z-index: 100;
+}
+
+.menu-toggle_btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.menu-text {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #D2B867;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.menu-icon-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 4px);
+    grid-template-rows: repeat(3, 4px);
+    gap: 4px;
+    transition: gap 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Adding a nice bounce effect */
+}
+
+.menu-toggle_btn:hover .menu-icon-grid {
+    gap: 6px;
+    cursor: pointer;
+}
+
+.menu-icon-grid span {
+    width: 4px;
+    height: 4px;
+    background-color: var(--primary-gold);
+}
+
+/* Fullscreen Background */
+.app-bg {
+    position: fixed;
+    top: 0;
+    left: 20%;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-image 0.5s ease-in-out;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: auto; /* Allow growth for submenu */
+    height: 100vh;
+    z-index: 200;
+    transform: translateX(-100%);
+    transition: transform var(--transition-speed) cubic-bezier(0.77, 0, 0.175, 1);
+    display: flex; /* Row layout for Main + Submenu */
+    flex-direction: row;
+}
+
+.sidebar.active {
+    transform: translateX(0);
+}
+
+.sidebar-main {
+    width: 450px; /* Fixed width to prevent resizing */
+    min-width: 450px; /* Ensure it stays this size */
+    height: 100%;
+    background-color: var(--bg-sidebar);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Submenu Panel */
+.submenu-panel {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgb(25, 18, 14, 0.8) 0%,
+        rgb(25, 18, 14, 0.8) 40%,
+        rgba(25, 18, 14, 0.7) 55%,
+        rgba(25, 18, 14, 0.4) 70%,
+        rgba(25, 18, 14, 0.3) 85%,
+        transparent 100%
+    );
+
+    overflow: hidden;
+    transition: width 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center items vertically like image */
+    padding-left: 0; /* Animated */
+}
+
+.submenu-panel.active {
+    width: 250px;
+    padding-left: 30px;
+}
+
+.submenu-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.submenu-list li a {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 300;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.submenu-list li a:hover {
+    color: var(--primary-gold);
+}
+
+.submenu-list li.header-item {
+     /* e.g. "TAILORED WOMEN SUITS" header style */
+     color: var(--primary-gold);
+     font-weight: 700;
+     margin-bottom: 10px;
+}
+
+/* Sidebar Header / Close Button */
+.sidebar-header {
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    justify-content: flex-start;
+    transform: translateY(10px);
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.close-icon {
+    position: relative;
+    width: 30px;
+    height: 30px;
+}
+
+.close-icon span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 1px;
+    background-color: #C9B597;
+    transform-origin: center;
+}
+
+.close-icon span:first-child {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.close-icon span:last-child {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.close-text {
+    font-family: sans-serif;
+    font-size: .781em;
+    font-weight: 900;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    color: #fcd176;
+    background-color: rgba(0, 0, 0, 0);
+    letter-spacing: .32em;
+    display: inline-block;
+    transition: .2s;
+    line-height: 1.5;
+}
+
+/* Sidebar Content / Nav List */
+.nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0; /* Remove gap, use padding/margin on li for strip effect */
+}
+
+.nav-list li {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    position: relative;
+    padding: 25px 0; /* Spacing */
+    cursor: pointer;
+}
+
+.sidebar.active .nav-list li {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Background Strip for Menu Item */
+.nav-bg-strip {
+    position: absolute;
+    top: 0;
+    left: -40px; /* Extend to edge */
+    width: calc(100% + 80px); /* Full width of sidebar padded area */
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+}
+
+.nav-list li:hover .nav-bg-strip,
+.nav-list li.active .nav-bg-strip {
+    opacity: 0.5;
+    box-shadow: 0 0 10px rgba(128, 128, 128, .4), 0 0 10px rgba(128, 128, 128, .4);
+}
+
+.nav-list a {
+    text-decoration: none;
+    color: var(--text-grey);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 400;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+    display: block;
+    position: relative;
+    z-index: 1;
+    padding-left: 6rem;
+    font-family: sans-serif;
+    font-weight: 500;
+    color: #987e62;
+    letter-spacing: .34em;
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+.nav-list li:hover a,
+.nav-list li.active a {
+    font-weight: 900;
+    color: #fcd176;
+    font-size: 1.15em;
+}
+
+/* Staggered animation delay */
+.sidebar.active .nav-list li:nth-child(1) { transition-delay: 0.1s; }
+.sidebar.active .nav-list li:nth-child(2) { transition-delay: 0.2s; }
+.sidebar.active .nav-list li:nth-child(3) { transition-delay: 0.3s; }
+.sidebar.active .nav-list li:nth-child(4) { transition-delay: 0.4s; }
+.sidebar.active .nav-list li:nth-child(5) { transition-delay: 0.5s; }
+.sidebar.active .nav-list li:nth-child(6) { transition-delay: 0.6s; }
+.sidebar.active .nav-list li:nth-child(7) { transition-delay: 0.7s; }
+
+/* Sidebar Footer */
+.sidebar-footer {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px;
+    justify-content: center; /* Or flex-start if matched image */
+}
+
+.social-icons a {
+    color: var(--text-grey);
+    font-size: 14px;
+    transition: color 0.3s;
+    border: 1px solid rgba(255,255,255,0.1);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Circle icons like image 2 */
+    border-radius: 50%;
+}
+
+.social-icons a:hover {
+    color: var(--hover-gold);
+    border-color: var(--hover-gold);
+}
+
+.payment-icons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    color: #fff; /* Or specific brand colors */
+    font-size: 20px;
+}
+
+.shipping-info {
+    font-size: 10px;
+    color: var(--primary-gold);
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+/* Overlay for outside click close */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    z-index: 150;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.sidebar.active ~ .overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
