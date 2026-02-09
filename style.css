@@ -100,13 +100,13 @@ body {
 }
 
 .sidebar-main {
-    width: 450px; /* Fixed width to prevent resizing */
-    min-width: 450px; /* Ensure it stays this size */
+    width: 450px;
+    min-width: 450px;
     height: 100%;
     background-color: var(--bg-sidebar);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     padding: 40px;
     position: relative;
     z-index: 2;
@@ -325,55 +325,87 @@ body {
 
 /* Sidebar Footer */
 .sidebar-footer {
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding-top: 20px;
+    padding-top: 40px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
+    transform: translateX(20px);
 }
 
 .social-icons {
     display: flex;
-    gap: 10px;
-    justify-content: center; /* Or flex-start if matched image */
+    gap: 8px;
+    justify-content: center;
 }
 
 .social-icons a {
-    color: var(--text-grey);
+    color: #666;
     font-size: 14px;
-    transition: color 0.3s;
-    border: 1px solid rgba(255,255,255,0.1);
-    width: 30px;
-    height: 30px;
+    transition: all 0.3s;
+    border: 1px solid #444;
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
-    justify-content: center; /* Circle icons like image 2 */
+    justify-content: center;
     border-radius: 50%;
+    background-color: transparent;
 }
 
 .social-icons a:hover {
-    color: var(--hover-gold);
-    border-color: var(--hover-gold);
+    color: #fff;
+    border-color: #fff;
+    transform: scale(1.2)
 }
 
 .payment-icons {
     display: flex;
-    gap: 10px;
+    gap: 5px;
     justify-content: center;
-    color: #fff; /* Or specific brand colors */
-    font-size: 20px;
+    font-size: 24px; /* Larger icons */
 }
+
+/* Specific colors for payment icons (approximate) */
+.payment-icons .fa-cc-paypal { color: #003087; background: #fff; padding: 0 2px; border-radius: 2px; }
+.payment-icons .fa-cc-visa { color: #1a1f71; background: #fff; padding: 0 2px; border-radius: 2px; }
+.payment-icons .fa-cc-mastercard { color: #eb001b; background: #fff; padding: 0 2px; border-radius: 2px; }
+.payment-icons .fa-cc-amex { color: #2e77bc; background: #fff; padding: 0 2px; border-radius: 2px; }
 
 .shipping-info {
     font-size: 10px;
-    color: var(--primary-gold);
+    color: #7dd3fc; /* Light blue/cyan like image */
     text-align: center;
     letter-spacing: 1px;
     text-transform: uppercase;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.shipping-info span {
+    color: #7dd3fc;
+}
+
+.shipping-info .fa-ups {
+    font-size: 16px;
+    color: #ffb500; /* Gold Logo */
+    background-color: #351c15; /* Brown Background */
+    padding: 2px;
+    border-radius: 2px;
+    width: 20px;
+    text-align: center;
+}
+
+.shipping-info .fa-dhl {
+    font-size: 16px;
+    color: #d40511;
+    background-color: #ffcc00;
+    padding: 2px; /* DHL logo is usually rectangular, adjusting to fit */
+    border-radius: 2px;
+    width: 24px; /* Force wider for DHL text look */
+    text-align: center;
 }
 
 /* Overlay for outside click close */

@@ -119,12 +119,14 @@ function updateActiveState(index) {
         });
 
         // Update Fullscreen Background
-        if (menuItems[index].largeImage) {
-            appBg.style.backgroundImage = `url('${menuItems[index].largeImage}')`;
-            appBg.style.backgroundColor = 'transparent';
-        } else {
-            appBg.style.backgroundImage = 'none';
-            appBg.style.backgroundColor = '#000';
+        if (sidebar.classList.contains('active')) {
+            if (menuItems[index].largeImage) {
+                appBg.style.backgroundImage = `url('${menuItems[index].largeImage}')`;
+                appBg.style.backgroundColor = 'transparent';
+            } else {
+                appBg.style.backgroundImage = 'none';
+                appBg.style.backgroundColor = '#000';
+            }
         }
 
         updateSubmenu(menuItems[index].submenu);
