@@ -739,7 +739,6 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
-    flex-wrap: wrap;
 }
 
 .tp-stars {
@@ -811,5 +810,9 @@ body {
     }
     .section-title {
         font-size: 26px;
+    }
+
+    .trustpilot-widget {
+        flex-direction: column;
     }
 }
