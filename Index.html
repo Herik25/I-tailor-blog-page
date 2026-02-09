@@ -6,7 +6,7 @@
     <title>Itailor Blog Page</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- Placeholder for icons, might switch to SVG or simpler if needed -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -30,7 +30,7 @@
 
     <!-- Sidebar Navigation -->
     <nav id="sidebar" class="sidebar">
-        <!-- Main Panel -->
+        <!-- (Sidebar content omitted for brevity, unchanged) -->
         <div class="sidebar-main">
             <div class="sidebar-header">
                 <button id="close-btn" class="close-btn">
@@ -69,6 +69,96 @@
         </div>
     </nav>
     
+    <!-- Main Blog Content -->
+    <main class="blog-container">
+        <article class="hero-section">
+            <div class="hero-image-wrapper">
+                <!-- Using a high-quality placeholder that matches the vibe -->
+                <img src="./images/blog-hero.png" alt="Man in Brown Suit" class="hero-img">
+                
+                <div class="hero-overlay">
+                    <h1 class="hero-title">What Men Who<br>Need a Suit Really<br>Want</h1>
+                    <p class="hero-subtitle">(And Why Most Brands Miss It)</p>
+                </div>
+
+                <div class="hero-rating">
+                    <span class="rating-text">4.6 (Reviews 3,641)</span>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i> <!-- Should be half/filled logic but static for now -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-description">
+                <p>
+                    Buying a suit isn't just about fabric and fit anymore. Modern men are balancing time, taste, and purpose — 
+                    and they expect their suit brand to do the same. Whether it's for a wedding, a boardroom, or a milestone 
+                    moment, today's customer wants clarity, confidence, and convenience without compromising on 
+                    craftsmanship.
+                </p>
+                <button class="cta-btn">VIEW PUBLIC CHOICE</button>
+            </div>
+        </article>
+
+        <!-- Features Grid Section -->
+        <section class="features-section">
+            <h2 class="section-title">What Defines a Great Suit Experience Today</h2>
+            <div id="blog-grid" class="features-grid">
+                <!-- Dynamic Content from JS -->
+            </div>
+            <button class="cta-btn">Continue Reading: Custom Details That Matter</button>
+        </section>
+
+        <!-- Trust & Luxury Section -->
+        <section class="trust-section">
+            <div class="trust-image-wrapper">
+                <img src="./images/secton-3-hero-image.png" alt="Tailoring Details" class="trust-img">
+            </div>
+            <div class="trust-content">
+                <blockquote class="trust-quote">
+                    Transparency builds trust — and <br> responsibility defines modern luxury.
+                </blockquote>
+                
+                <div class="trustpilot-widget">
+                    <div class="tp-logo-row">
+                        <svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23.3355 8.43328H14.4245L11.6721 0L8.91102 8.43327L0 8.42472L7.21655 13.6421L4.45551 22.0668L11.6721 16.858L18.88 22.0668L16.1276 13.6421L23.3355 8.43328Z" fill="#00B67A"/>
+                            <path d="M16.7467 15.5489L16.1274 13.6416L11.6719 16.8575L16.7467 15.5489Z" fill="#005128"/>
+                        </svg>
+                        <span class="tp-name">Trustpilot</span>
+                    </div>
+                    <div class="tp-rating-row">
+                        <div class="tp-stars">
+                            <svg width="120" height="20" viewBox="0 0 120 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="20" height="20" fill="#00B67A"/>
+                                <path d="M17.2087 8.52014H11.7277L10.0347 3.33301L8.33645 8.52014L2.85547 8.51488L7.29422 11.724L5.59596 16.9058L10.0347 13.702L14.4682 16.9058L12.7752 11.724L17.2087 8.52014Z" fill="white"/>
+                                <path d="M13.1566 12.8968L12.7756 11.7236L10.0352 13.7017L13.1566 12.8968Z" fill="#00B67A"/>
+                                <rect x="25" width="20" height="20" fill="#00B67A"/>
+                                <path d="M42.2087 8.52014H36.7277L35.0347 3.33301L33.3365 8.52014L27.8555 8.51488L32.2942 11.724L30.596 16.9058L35.0347 13.702L39.4682 16.9058L37.7752 11.724L42.2087 8.52014Z" fill="white"/>
+                                <path d="M38.1566 12.8968L37.7756 11.7236L35.0352 13.7017L38.1566 12.8968Z" fill="#00B67A"/>
+                                <rect x="50" width="20" height="20" fill="#00B67A"/>
+                                <path d="M67.2087 8.52014H61.7277L60.0347 3.33301L58.3365 8.52014L52.8555 8.51488L57.2942 11.724L55.596 16.9058L60.0347 13.702L64.4682 16.9058L62.7752 11.724L67.2087 8.52014Z" fill="white"/>
+                                <path d="M63.1566 12.8968L62.7756 11.7236L60.0352 13.7017L63.1566 12.8968Z" fill="#00B67A"/>
+                                <rect x="75" width="20" height="20" fill="#00B67A"/>
+                                <path d="M92.2087 8.52014H86.7277L85.0347 3.33301L83.3365 8.52014L77.8555 8.51488L82.2942 11.724L80.596 16.9058L85.0347 13.702L89.4682 16.9058L87.7752 11.724L92.2087 8.52014Z" fill="white"/>
+                                <path d="M88.1566 12.8968L87.7756 11.7236L85.0352 13.7017L88.1566 12.8968Z" fill="#00B67A"/>
+                                <rect x="100" width="20" height="20" fill="#BBBBBB"/>
+                                <rect x="100" width="10" height="20" fill="#00B67A"/>
+                                <path d="M117.209 8.52014H111.728L110.035 3.33301L108.336 8.52014L102.855 8.51488L107.294 11.724L105.596 16.9058L110.035 13.702L114.468 16.9058L112.775 11.724L117.209 8.52014Z" fill="white"/>
+                                <path d="M113.157 12.8968L112.776 11.7236L110.035 13.7017L113.157 12.8968Z" fill="#00B67A"/>
+                            </svg>
+                        </div>
+                        <span class="tp-score">TrustScore 4.5 <span class="tp-reviews">over 3K reviews</span></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
     <!-- Overlay -->
     <div id="overlay" class="overlay"></div>
 

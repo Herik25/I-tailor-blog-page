@@ -210,6 +210,95 @@ function closeMenu() {
     appBg.style.backgroundColor = 'transparent';
 }
 
+// Blog Data
+const blogPosts = [
+    {
+        title: "A Perfect, Natural Fit — Without the Effort",
+        desc: "Men want a suit that feels right instantly — balanced shoulders, easy movement, and a sharp silhouette.",
+        image: "./images/image-1.png"
+    },
+    {
+        title: "Fast Turnaround (Because Life Doesn't Wait)",
+        desc: "Long waiting periods feel outdated. Men expect premium tailoring delivered efficiently.",
+        image: "./images/image-2.png"
+    },
+    {
+        title: "Digital Convenience That Actually Works",
+        desc: "Accurate online tools remove hesitation — from measurements to fit confidence.",
+        image: "./images/image-3.png"
+    },
+    {
+        title: "Modern, Versatile Style",
+        desc: "One suit should work across moments — formal when needed, adaptable when styled casual.",
+        image: "./images/image-4.png"
+    },
+    {
+        title: "Clear Fabric Choices (No Overwhelm)",
+        desc: "Men prefer curated fabric selections chosen for climate, occasion, and durability.",
+        image: "./images/image-5.png"
+    },
+    {
+        title: "A Simple, Guided Experience",
+        desc: "Most men value expert guidance — someone to simplify choices and recommend what works.",
+        image: "./images/image-6.png"
+    },
+    {
+        title: "The Ultimate Wedding Suit Guide",
+        desc: "From the groom to the best man, find the perfect look for the big day with timeless elegance, ensuring everyone looks dapper.",
+        image: "./images/image-7.png"
+    },
+    {
+        title: "Business Casual Redefined",
+        desc: "How to style your custom jacket with jeans or chinos for a sharp yet relaxed office look that commands respect.",
+        image: "./images/image-8.png"
+    },
+    {
+        title: "Essential Accessories for Every Gentleman",
+        desc: "Elevate your suit with the right tie, pocket square, and cufflinks for a polished finish that separates the men from the boys.",
+        image: "./images/image-9.png"
+    }
+];
+
+function renderBlogGrid() {
+    const blogGrid = document.getElementById('blog-grid');
+    if (!blogGrid) return; 
+
+    blogGrid.innerHTML = ''; 
+
+    blogPosts.forEach(post => {
+        const article = document.createElement('article');
+        article.classList.add('feature-card');
+
+        // Create inner HTML structure
+        const imgWrapper = document.createElement('div');
+        imgWrapper.classList.add('feature-img-wrapper');
+        const img = document.createElement('img');
+        img.src = post.image;
+        img.alt = post.title;
+        img.classList.add('feature-img');
+        imgWrapper.appendChild(img);
+
+        const content = document.createElement('div');
+        content.classList.add('feature-content');
+        
+        const title = document.createElement('h3');
+        title.classList.add('feature-title');
+        title.textContent = post.title;
+        
+        const desc = document.createElement('p');
+        desc.classList.add('feature-desc');
+        desc.innerHTML = `${post.desc} <a href="#" class="read-more">Read More...</a>`; // Using innerHTML for the link
+
+        content.appendChild(title);
+        content.appendChild(desc);
+
+        article.appendChild(imgWrapper);
+        article.appendChild(content);
+
+        blogGrid.appendChild(article);
+    });
+}
+
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
     // Inject keyframes for submenu if not in CSS
@@ -223,6 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(styleSheet);
 
     renderMenu();
+    renderBlogGrid(); // Render blog posts
 
     menuToggle.addEventListener('click', toggleMenu);
     closeBtn.addEventListener('click', closeMenu);

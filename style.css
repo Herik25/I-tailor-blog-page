@@ -402,13 +402,11 @@ body {
     font-size: 16px;
     color: #d40511;
     background-color: #ffcc00;
-    padding: 2px; /* DHL logo is usually rectangular, adjusting to fit */
+    padding: 2px;
     border-radius: 2px;
-    width: 24px; /* Force wider for DHL text look */
+    width: 24px;
     text-align: center;
 }
-
-/* Overlay for outside click close */
 .overlay {
     position: fixed;
     top: 0;
@@ -425,4 +423,393 @@ body {
 .sidebar.active ~ .overlay {
     opacity: 1;
     pointer-events: auto;
+}
+
+
+/* BLOG PAGE */
+
+
+.blog-container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 80px 20px 80px; 
+    background-color: #d8cbb6;
+    background-image: url("./images/background.png"); 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 80px; 
+}
+
+.hero-section {
+    max-width: 1100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.hero-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 600px; 
+    overflow: hidden;
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top; 
+    filter: brightness(0.8) contrast(1.1);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 50%;
+    left: 80px;
+    transform: translateY(-50%);
+    color: #FFE3B8;
+    background: linear-gradient(270deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.25) 85.7%, #000000 202.12%);
+    z-index: 2;
+}
+
+.hero-title {
+    font-family: 'Manrope', sans-serif;
+    font-size: 62px;
+    line-height: 1.1;
+    font-weight: 600; 
+    margin-bottom: 15px;
+    letter-spacing: -2%; 
+}
+
+.hero-subtitle {
+    font-family: 'Manrope', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    opacity: 0.9;
+    list-style: 67px;
+    color: #FFFFFFE5;
+    opacity: 0.8;
+}
+
+.hero-rating {
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+    text-align: right;
+    color: #fff;
+    z-index: 2;
+}
+
+.rating-text {
+    font-family: 'Manrope', sans-serif;
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+    padding-bottom: 2px;
+    display: inline-block;
+}
+
+.stars {
+    color: #fff;
+    font-size: 14px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero-description {
+    max-width: 800px;
+    text-align: center;
+    color: #141414;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.hero-description p {
+    font-size: 16px;
+    line-height: 150%;
+    font-family: 'Futura', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.cta-btn {
+    background-color: #37ABD3;
+    color: #fff;
+    border: none;
+    padding: 15px 40px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    border-radius: 2px;
+}
+
+.cta-btn:hover {
+    background-color: #3590ba;
+    transform: translateY(-2px);
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+    .hero-title { font-size: 48px; }
+    .hero-image-wrapper { height: 500px; }
+}
+
+@media (max-width: 768px) {
+    .hero-overlay { left: 40px; }
+    .hero-title { font-size: 36px; }
+    .hero-image-wrapper { height: 400px; }
+    .hero-rating { bottom: 20px; right: 20px; }
+}
+
+@media (max-width: 480px) {
+    .hero-overlay { 
+        position: relative; 
+        top: auto; 
+        left: auto; 
+        transform: none; 
+        padding: 40px 20px; 
+        background: rgba(0,0,0,0.6); 
+        width: 100%;
+        text-align: center;
+    }
+    .hero-title { font-size: 32px; letter-spacing: 0; }
+    .hero-rating { position: relative; bottom: auto; right: auto; text-align: center; margin-top: 10px; color: #333; }
+    .hero-rating .stars, .rating-text { color: #333; text-shadow: none; border-color: #333; }
+}
+
+/* BLOG CARDS */
+
+.features-section {
+    max-width: 1100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.section-title {
+    font-family: 'Manrope', sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: #000;
+    text-align: center;
+    letter-spacing: -2%;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 30px;
+    row-gap: 50px;
+    width: 100%;
+}
+
+.feature-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    text-align: center;
+}
+
+.feature-img-wrapper {
+    width: 100%;
+    aspect-ratio: 3/4; 
+    overflow: hidden;
+    position: relative;
+}
+
+.feature-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.feature-card:hover .feature-img {
+    transform: scale(1.05);
+}
+
+.feature-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0 10px;
+}
+
+.feature-title {
+    font-family: 'Manrope', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #850E14;
+    line-height: 150%;
+}
+
+.feature-desc {
+    font-family: 'Futura', sans-serif;
+    font-size: 16px;
+    color: #141414;
+    line-height: 150%;
+}
+
+.read-more {
+    color: #850E14CC;
+    font-weight: 400;
+    text-decoration: none;
+    font-size: 16px;
+    margin-left: 5px;
+    line-height: 150%;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+/* TRUST SECTION */
+.trust-section {
+    max-width: 1100px;
+    width: 100%;
+    height: 450px;
+    display: flex;
+    flex-direction: row;
+    background-color: #000;
+}
+
+.trust-image-wrapper {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+.trust-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.trust-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px;
+    color: #fff;
+}
+
+.trust-quote {
+    font-family: 'Manrope', sans-serif;
+    font-size: 28px;
+    line-height: 1.4;
+    font-weight: 400;
+    margin-bottom: 20px;
+    letter-spacing: -2%;
+}
+
+/* Trustpilot Widget */
+.trustpilot-widget {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    display: flex;
+    gap: 10px;
+}
+
+.tp-logo-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.tp-star {
+    color: #00b67a;
+    font-size: 20px;
+}
+
+.tp-rating-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.tp-stars {
+    display: flex;
+    gap: 2px;
+}
+
+.tp-stars .fa-star-square {
+    color: #00b67a;
+    background-color: #00b67a;
+    font-size: 20px; 
+    border-radius: 2px;
+}
+
+.tp-box {
+    width: 24px;
+    height: 24px;
+    background-color: #00b67a;
+    display: inline-block;
+    position: relative;
+}
+.tp-stars i {
+    color: #00b67a !important;
+}
+
+.tp-score {
+    font-size: 14px;
+    color: #fff;
+    font-weight: 400;
+}
+
+.tp-reviews {
+    padding-left: 5px;
+}
+
+/* Responsiveness */
+@media (max-width: 900px) {
+    .trust-section {
+        flex-direction: column;
+        height: auto;
+    }
+    .trust-image-wrapper {
+        width: 100%;
+        height: 300px;
+    }
+    .trust-content {
+        padding: 40px 20px;
+        text-align: center;
+        align-items: center;
+    }
+    .trust-quote {
+        font-size: 24px;
+    }
+}
+/* General Responsiveness */
+@media (max-width: 1024px) {
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    .blog-container {
+        padding-top: 60px;
+        gap: 60px;
+    }
+    .section-title {
+        font-size: 26px;
+    }
 }
