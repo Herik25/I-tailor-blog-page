@@ -113,6 +113,7 @@ body {
 }
 
 /* Submenu Panel */
+/* Submenu Panel */
 .submenu-panel {
     width: 0;
     height: 100%;
@@ -130,44 +131,62 @@ body {
     transition: width 0.4s ease;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center items vertically like image */
-    padding-left: 0; /* Animated */
+    justify-content: flex-start; /* Align top so JS can push it down */
+    padding-left: 0;
+    
+    /* Fade Effect Animation */
+    opacity: 0;
+    animation-duration: 0.4s;
+    animation-fill-mode: both;
+    animation-name: fadeOut;
 }
 
 .submenu-panel.active {
-    width: 250px;
-    padding-left: 30px;
+    width: 500px; /* Wide enough for the gradient to fade out smoothly */
+    padding-left: 40px; /* Space from the main sidebar */
+    animation-name: fadeIn;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
 }
 
 .submenu-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 40px; /* Spacing between items */
 }
 
 .submenu-list li a {
-    color: #fff;
+    color: #8c8c8c; 
     text-decoration: none;
     text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 2px;
-    font-weight: 300;
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    font-weight: 400;
     transition: color 0.3s;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
-.submenu-list li a:hover {
-    color: var(--primary-gold);
+.submenu-list li a:hover,
+.submenu-list li.header-item a {
+    color: #D2B867;
+    font-weight: 600;
+    transform: translateX(10px);
 }
 
-.submenu-list li.header-item {
-     /* e.g. "TAILORED WOMEN SUITS" header style */
-     color: var(--primary-gold);
-     font-weight: 700;
-     margin-bottom: 10px;
+.submenu-list li i {
+    font-size: 10px;
+    color: #D2B867;
 }
 
 /* Sidebar Header / Close Button */

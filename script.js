@@ -127,8 +127,19 @@ function updateActiveState(index) {
             appBg.style.backgroundColor = '#000';
         }
 
-        // Update Submenu
         updateSubmenu(menuItems[index].submenu);
+
+        setTimeout(() => {
+            const activeLi = lis[index];
+            if (activeLi) {
+                const rect = activeLi.getBoundingClientRect();
+                
+                const submenuList = document.querySelector('.submenu-list');
+                if (submenuList) {
+                    submenuList.style.marginTop = `${rect.top + 10}px`;
+                }
+            }
+        }, 50);
     }
 }
 
@@ -146,12 +157,11 @@ function updateSubmenu(items) {
             const li = document.createElement('li');
             li.style.animation = `fadeInRight 0.3s ease forwards ${idx * 0.1}s`;
             li.style.opacity = '0'; // For animation
-            if (idx === 0) li.classList.add('header-item'); // Assuming first is title-like or just styling all same
+            if (idx === 0) li.classList.add('header-item');
 
             const a = document.createElement('a');
             a.href = "#";
-            a.innerHTML = idx === 0 ? `${subItem} <i class="fas fa-caret-right"></i>` : subItem; // add arrow to first or just text
-            // Per image 2, top one "TAILORED WOMEN SUITS" has a caret
+            a.innerHTML = idx === 0 ? `${subItem} <i class="fas fa-caret-right"></i>` : subItem;
             
             li.appendChild(a);
             ul.appendChild(li);
@@ -182,8 +192,10 @@ function toggleMenu() {
         // Trigger initial active state render
         updateActiveState(activeIndex);
     } else {
-        // Reset sub panel when closing main menu?
+        // Reset sub panel when closing main menu
         submenuPanel.classList.remove('active');
+        appBg.style.backgroundImage = 'none';
+        appBg.style.backgroundColor = 'transparent';
     }
 }
 
@@ -191,6 +203,9 @@ function toggleMenu() {
 function closeMenu() {
     sidebar.classList.remove('active');
     overlay.classList.remove('active');
+    submenuPanel.classList.remove('active');
+    appBg.style.backgroundImage = 'none';
+    appBg.style.backgroundColor = 'transparent';
 }
 
 // Event Listeners
