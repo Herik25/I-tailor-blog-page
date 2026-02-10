@@ -816,3 +816,277 @@ body {
         flex-direction: column;
     }
 }
+
+/* FOOTER STYLES */
+
+/* Footer Styles Update */
+.app-footer {
+    background-color: #0f0b08;
+    color: #68624f;
+    padding: 20px;
+    font-family: 'Futura', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.footer-top-msg {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.footer-top-msg p {
+    color: #d2b797;
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    word-spacing: 5px;
+    font-weight: 400;
+}
+
+.footer-grid {
+    display: flex;
+    width: 100%;
+    max-width: 1400px;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+/* Group for the first two columns */
+.footer-col-group {
+    display: flex;
+    gap: 30px;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 120px;
+}
+
+.footer-col.offset-top {
+    padding-top: 45px; /* Visual alignment with links */
+}
+
+.footer-head {
+    color: #c5a47e;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+    font-family: 'Lato', sans-serif;
+    text-transform: capitalize;
+}
+
+.footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-links li a {
+    color: #8c8374;
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.3s;
+    letter-spacing: 0.5px;
+    display: block;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+}
+
+.footer-links li a:hover {
+    color: #c5a47e;
+}
+
+.highlight-cyan {
+    color: #00e5ff !important; /* Bright cyan */
+}
+
+.support-text {
+    font-size: 12px;
+    line-height: 1.6;
+    color: #8c8374;
+    margin-bottom: 25px;
+}
+
+.payment-block {
+    position: absolute;
+    bottom: -40px; /* Push down but within view relative to grid */
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Align to right */
+    gap: 15px;
+    pointer-events: auto; /* Ensure clickable */
+    z-index: 10;
+}
+
+.payment-title {
+    color: #fff;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.newsletter-box {
+    display: flex;
+    gap: 0;
+    align-items: center;
+}
+
+.email-input {
+    background: transparent;
+    border: 1px solid #333;
+    padding: 8px 12px;
+    color: #aaa;
+    font-size: 12px;
+    width: 180px;
+    height: 40px;
+    outline: none;
+    font-family: 'Lato', sans-serif;
+}
+
+.sub-btn {
+    background: #fff;
+    color: #000;
+    border: none;
+    height: 40px;
+    padding: 0 20px;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    font-family: 'Lato', sans-serif;
+    transition: background 0.3s;
+}
+
+.sub-btn:hover {
+    background: #ddd;
+}
+
+.footer-bottom {
+    margin-top: 60px;
+    padding-top: 20px;
+    width: 100%;
+    text-align: center;
+    color: #444; 
+    border-top: 1px solid #1a1a1a;
+}
+
+.footer-bottom p {
+    font-size: 10px;
+    color: #555;
+    letter-spacing: 0.5px;
+}
+
+/* Responsive Adjustments */
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+    .footer-grid {
+        justify-content: flex-start;
+        gap: 30px;
+    }
+
+    .payment-block {
+        position: relative; /* Switch to relative on smaller screens to prevent overlap */
+        bottom: auto;
+        right: auto;
+        align-items: flex-start;
+        margin-top: 20px;
+    }
+    
+    .footer-col.support-col {
+        margin-left: 0;
+        width: 100%;
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 992px) {
+    .footer-grid {
+        gap: 40px;
+    }
+}
+
+/* Tablet / Large Mobile (400px - 768px) Specific Layout */
+@media (min-width: 401px) and (max-width: 768px) {
+    .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        position: relative;
+        padding-bottom: 120px; /* Space for absolute payment block */
+    }
+
+    .footer-col-group {
+        grid-column: 1 / -1; /* Span top width */
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    /* Why iTailor, Customer Care, About Us naturally fall into the 3 columns */
+    .footer-col {
+        min-width: 0; width: 100%;
+    }
+
+    /* Sitemap and Support */
+    .footer-col:nth-last-child(2) { /* Sitemap */
+        grid-column: 1 / 2;
+    }
+
+    .footer-col.support-col {
+        grid-column: 2 / -1; /* Align with remaining space */
+        width: 100%;
+        max-width: none;
+        align-items: flex-start;
+        position: static; /* Reset relative grouping context if needed */
+    }
+
+    .payment-block {
+        position: absolute;
+        bottom: -80px;
+        right: 0px;
+        align-items: flex-end;
+    }
+    
+    .app-footer {
+        padding: 40px 20px 80px; /* Add bottom padding */
+    }
+}
+
+/* Small Mobile (< 400px) */
+@media (max-width: 400px) {
+    .footer-col-group {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .footer-col.offset-top {
+        padding-top: 0;
+    }
+    
+    .footer-grid {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .footer-col {
+        width: 100%;
+    }
+    
+    .app-footer {
+        padding: 40px 20px;
+    }
+}
