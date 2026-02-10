@@ -77,6 +77,10 @@ function renderMenu() {
     navList.innerHTML = ''; // Clear existing
     menuItems.forEach((item, index) => {
         const li = document.createElement('li');
+        li.classList.add('menu-item');
+        if (item.submenu && item.submenu.length > 0) {
+            li.classList.add('has-submenu');
+        }
         
         // Background Strip Image
         const bgImg = document.createElement('img');
@@ -84,24 +88,78 @@ function renderMenu() {
         bgImg.classList.add('nav-bg-strip');
         li.appendChild(bgImg);
 
+        const linkWrapper = document.createElement('div');
+        linkWrapper.classList.add('menu-link-wrapper');
+
         const a = document.createElement('a');
         a.href = item.link;
         a.textContent = item.name;
-        li.appendChild(a);
+        linkWrapper.appendChild(a);
+        
+        li.appendChild(linkWrapper);
 
-        // Hover Event with explicit handling
+        // Mobile Submenu (Rendered inline)
+        if (item.submenu && item.submenu.length > 0) {
+            const mobileSubUl = document.createElement('ul');
+            mobileSubUl.classList.add('mobile-submenu');
+            item.submenu.forEach(subItem => {
+                const subLi = document.createElement('li');
+                const subA = document.createElement('a');
+                subA.href = "#";
+                subA.textContent = subItem;
+                subLi.appendChild(subA);
+                mobileSubUl.appendChild(subLi);
+            });
+            li.appendChild(mobileSubUl);
+        }
+
+        // Hover Event (Desktop)
         li.addEventListener('mouseenter', () => {
-            updateActiveState(index);
+             if (window.innerWidth > 1024) {
+                updateActiveState(index);
+             }
         });
 
-        // Add stagger effect for animation
+        // Click Event (Mobile Accordion)
+        linkWrapper.addEventListener('click', (e) => {
+            if (window.innerWidth <= 1024 && item.submenu && item.submenu.length > 0) {
+                e.preventDefault();
+                // Toggle Active Class
+                const isActive = li.classList.contains('mobile-active');
+                
+                // Close siblings
+                const siblings = navList.querySelectorAll('li.menu-item');
+                siblings.forEach(sib => {
+                    if (sib !== li) {
+                        sib.classList.remove('mobile-active');
+                        const sub = sib.querySelector('.mobile-submenu');
+                        if (sub) sub.style.maxHeight = null;
+                    }
+                });
+
+                if (!isActive) {
+                    li.classList.add('mobile-active');
+                    const sub = li.querySelector('.mobile-submenu');
+                    if (sub) sub.style.maxHeight = sub.scrollHeight + "px";
+                } else {
+                    li.classList.remove('mobile-active');
+                    const sub = li.querySelector('.mobile-submenu');
+                    if (sub) sub.style.maxHeight = null;
+                }
+            }
+        });
+
+
+        // Add stagger effect
         li.style.transitionDelay = `${index * 0.05 + 0.2}s`; 
 
         navList.appendChild(li);
     });
 
-    // Initialize with active item
-    updateActiveState(activeIndex);
+    // Initialize (Desktop)
+    if (window.innerWidth > 1024) {
+        updateActiveState(activeIndex);
+    }
 }
 
 function updateActiveState(index) {
@@ -109,7 +167,7 @@ function updateActiveState(index) {
         activeIndex = index;
         
         // Update List Items Style
-        const lis = navList.querySelectorAll('li');
+        const lis = navList.querySelectorAll('li.menu-item');
         lis.forEach((li, i) => {
             if (i === index) {
                 li.classList.add('active');
@@ -130,35 +188,39 @@ function updateActiveState(index) {
         }
 
         updateSubmenu(menuItems[index].submenu);
-
+        
+        // Position submenu panel vertically aligned with active item
         setTimeout(() => {
-            const activeLi = lis[index];
-            if (activeLi) {
-                const rect = activeLi.getBoundingClientRect();
-                
-                const submenuList = document.querySelector('.submenu-list');
-                if (submenuList) {
-                    submenuList.style.marginTop = `${rect.top + 10}px`;
-                }
-            }
+             const activeLi = lis[index];
+             if (activeLi) {
+                 const rect = activeLi.getBoundingClientRect();
+                 const submenuList = document.querySelector('.submenu-list');
+                 if (submenuList) {
+                     // Simple alignment logic
+                     let top = rect.top;
+                     // Adjust if too low? 
+                     if (top > window.innerHeight - 300) top = window.innerHeight - 300;
+                     submenuList.style.marginTop = `${top}px`;
+                 }
+             }
         }, 50);
+    } else {
+        // Clear if invalid index
+         submenuPanel.classList.remove('active');
     }
 }
 
 function updateSubmenu(items) {
-    submenuPanel.innerHTML = ''; // Clear
-    
+    submenuPanel.innerHTML = ''; 
     if (items && items.length > 0) {
         submenuPanel.classList.add('active');
-        
         const ul = document.createElement('ul');
         ul.classList.add('submenu-list');
         
-        // Add Header? Maybe just list items
         items.forEach((subItem, idx) => {
             const li = document.createElement('li');
             li.style.animation = `fadeInRight 0.3s ease forwards ${idx * 0.1}s`;
-            li.style.opacity = '0'; // For animation
+            li.style.opacity = '0';
             if (idx === 0) li.classList.add('header-item');
 
             const a = document.createElement('a');
@@ -168,11 +230,42 @@ function updateSubmenu(items) {
             li.appendChild(a);
             ul.appendChild(li);
         });
-        
         submenuPanel.appendChild(ul);
     } else {
         submenuPanel.classList.remove('active');
     }
+}
+
+// Secondary Navigation
+const secondaryLinks = [
+    { text: "About iTailor", isItalic: true },
+    { text: "About Us", isItalic: false },
+    { text: "Contact Us", isItalic: false },
+    { text: "FAQ", isItalic: false },
+    { text: "Why iTailor", isItalic: true },
+    { text: "Reviews", isItalic: false },
+    { text: "How It Works", isItalic: false },
+    { text: "Quality", isItalic: false },
+    { text: "Fit-Guarantee", isItalic: false },
+    { text: "More", isItalic: true }
+];
+
+function renderSecondaryMenu() {
+    const secList = document.getElementById('secondary-nav-list');
+    secList.innerHTML = '';
+    
+    secondaryLinks.forEach(item => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = "#";
+        a.textContent = item.text;
+        if (item.isItalic) {
+            a.style.fontStyle = 'italic';
+            a.style.opacity = '0.9'; 
+        }
+        li.appendChild(a);
+        secList.appendChild(li);
+    });
 }
 
 // Function to toggle sidebar
@@ -192,7 +285,9 @@ function toggleMenu() {
         });
         
         // Trigger initial active state render
-        updateActiveState(activeIndex);
+        if (window.innerWidth > 1024) {
+            updateActiveState(activeIndex);
+        }
     } else {
         // Reset sub panel when closing main menu
         submenuPanel.classList.remove('active');
@@ -312,6 +407,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(styleSheet);
 
     renderMenu();
+    renderSecondaryMenu();
     renderBlogGrid(); // Render blog posts
 
     menuToggle.addEventListener('click', toggleMenu);

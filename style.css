@@ -71,14 +71,15 @@ body {
 .app-bg {
     position: fixed;
     top: 0;
-    left: 20%;
+    left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: 140;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     transition: background-image 0.5s ease-in-out;
+    pointer-events: none;
 }
 
 /* Sidebar */
@@ -203,7 +204,7 @@ body {
     border: none;
     cursor: pointer;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse; /* Text atop Icon */
     align-items: center;
     gap: 5px;
 }
@@ -252,7 +253,7 @@ body {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 0; /* Remove gap, use padding/margin on li for strip effect */
+    gap: 0; 
 }
 
 .nav-list li {
@@ -260,7 +261,6 @@ body {
     transform: translateY(10px);
     transition: opacity 0.5s ease, transform 0.5s ease;
     position: relative;
-    padding: 25px 0; /* Spacing */
     cursor: pointer;
 }
 
@@ -269,12 +269,12 @@ body {
     transform: translateY(0);
 }
 
-/* Background Strip for Menu Item */
+/* Background Strip for Menu Item (Desktop) */
 .nav-bg-strip {
     position: absolute;
     top: 0;
-    left: -40px; /* Extend to edge */
-    width: calc(100% + 80px); /* Full width of sidebar padded area */
+    left: -40px; 
+    width: calc(100% + 80px); 
     height: 100%;
     object-fit: cover;
     opacity: 0;
@@ -285,26 +285,30 @@ body {
 .nav-list li:hover .nav-bg-strip,
 .nav-list li.active .nav-bg-strip {
     opacity: 0.5;
-    box-shadow: 0 0 10px rgba(128, 128, 128, .4), 0 0 10px rgba(128, 128, 128, .4);
+    box-shadow: 0 0 10px rgba(128, 128, 128, .4);
+}
+
+/* Menu Item Wrapper */
+.menu-link-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 22px 0 22px 6rem; /* Standard Desktop Padding */
+    position: relative;
+    z-index: 2;
 }
 
 .nav-list a {
     text-decoration: none;
-    color: var(--text-grey);
+    color: #987e62; /* Base color */
     font-size: 0.9rem;
-    letter-spacing: 2px;
+    letter-spacing: 0.25em;
     text-transform: uppercase;
-    font-weight: 400;
-    transition: color 0.3s ease, padding-left 0.3s ease;
-    display: block;
-    position: relative;
-    z-index: 1;
-    padding-left: 6rem;
-    font-family: sans-serif;
     font-weight: 500;
-    color: #987e62;
-    letter-spacing: .34em;
-    white-space: nowrap; /* Prevent text wrapping */
+    transition: color 0.3s ease;
+    font-family: sans-serif;
+    white-space: nowrap; 
 }
 
 .nav-list li:hover a,
@@ -312,6 +316,63 @@ body {
     font-weight: 900;
     color: #fcd176;
     font-size: 1.15em;
+}
+
+
+/* Mobile Submenu (Hidden by default) */
+.mobile-submenu {
+    list-style: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.5, 0, 0.1, 1);
+    background-color: rgba(56,40,31,.98)
+}
+
+.mobile-submenu li {
+    padding: 0;
+    opacity: 1; 
+    transform: none; 
+}
+
+.mobile-submenu a {
+    display: block;
+    padding: 12px 0 12px 6rem;
+    font-size: 0.8rem;
+    color: #a89f91;
+    letter-spacing: 0.15em;
+    font-weight: 400;
+}
+
+.mobile-submenu a:hover {
+    color: #fcd176;
+}
+
+/* Secondary Navigation */
+.secondary-nav-list {
+    list-style: none;
+    margin-top: 20px;
+    padding-left: 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    background-color: rgba(30,25,21,.65);
+    padding-block: 25px;
+    display: none;
+}
+
+.secondary-nav-list li a {
+    text-decoration: none;
+    color: #7a6b5d; /* Darker muted brown per image */
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    font-family: var(--font-main);
+    font-weight: 600;
+}
+
+.secondary-nav-list li a:hover {
+    color: #D2B867;
 }
 
 /* Staggered animation delay */
@@ -326,6 +387,7 @@ body {
 /* Sidebar Footer */
 .sidebar-footer {
     padding-top: 40px;
+    padding-bottom: 40px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -362,18 +424,18 @@ body {
     display: flex;
     gap: 5px;
     justify-content: center;
-    font-size: 24px; /* Larger icons */
+    font-size: 24px; 
 }
 
-/* Specific colors for payment icons (approximate) */
 .payment-icons .fa-cc-paypal { color: #003087; background: #fff; padding: 0 2px; border-radius: 2px; }
 .payment-icons .fa-cc-visa { color: #1a1f71; background: #fff; padding: 0 2px; border-radius: 2px; }
 .payment-icons .fa-cc-mastercard { color: #eb001b; background: #fff; padding: 0 2px; border-radius: 2px; }
 .payment-icons .fa-cc-amex { color: #2e77bc; background: #fff; padding: 0 2px; border-radius: 2px; }
 
+
 .shipping-info {
     font-size: 10px;
-    color: #7dd3fc; /* Light blue/cyan like image */
+    color: #7dd3fc; 
     text-align: center;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -390,8 +452,8 @@ body {
 
 .shipping-info .fa-ups {
     font-size: 16px;
-    color: #ffb500; /* Gold Logo */
-    background-color: #351c15; /* Brown Background */
+    color: #ffb500; 
+    background-color: #351c15; 
     padding: 2px;
     border-radius: 2px;
     width: 20px;
@@ -406,6 +468,169 @@ body {
     border-radius: 2px;
     width: 24px;
     text-align: center;
+}
+
+/* RESPONSIVE SIDEBAR (Mobile Accordion) */
+@media (max-width: 1024px) {
+    /* Main Layout */
+    .sidebar-main {
+        width: 75vw; 
+        max-width: 300px;
+        min-width: 300px;
+        background-color: rgba(56,40,31,.98); 
+        padding: 0;
+        overflow-y: auto; 
+        box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+        scrollbar-width: none; 
+        -ms-overflow-style: none;
+    }
+
+    .sidebar-main::-webkit-scrollbar { 
+        display: none;
+    }
+    
+    .sidebar-header {
+        position: relative;
+        padding: 20px 30px;
+        display: flex;
+        justify-content: flex-end; 
+    }
+
+    .sidebar-footer {
+        transform: translateX(0);
+    }
+
+    .secondary-nav-list {
+        display: flex;
+    }
+    
+    .close-btn {
+        margin: 0;
+        padding-top: 10px;
+    }
+    
+    .close-text {
+        font-size: 0.65em;
+        letter-spacing: 0.2em;
+        margin-bottom: 5px;
+        color: #fcd176;
+    }
+
+    /* Menu Items */
+    .nav-list {
+        padding-top: 10px;
+    }
+
+    .menu-link-wrapper {
+        padding: 18px 30px; /* Aligned padding */
+    }
+
+    .nav-list a {
+        padding-left: 0; 
+        font-size: 0.9rem;
+        letter-spacing: 0.25em; 
+        font-weight: 500;
+        color: #987e62;
+    }
+
+    .nav-list li:hover a {
+        font-size: 1rem;
+    }
+    
+    /* Plus Sign via CSS */ 
+    .has-submenu .menu-link-wrapper::after {
+        content: '+';
+        font-size: 1.4rem;
+        color: #fcd176;
+        font-weight: 300;
+        position: absolute;
+        right: 30px;
+        line-height: 1;
+    }
+
+    /* Active State (Minus) */
+    .mobile-active .menu-link-wrapper::after {
+        content: '\2212'; /* Minus sign */
+    }
+    
+    .mobile-active a {
+        color: #fcd176;
+    }
+
+    /* Mobile Menu Item Active Effect */
+    .nav-list li.menu-item.mobile-active .menu-link-wrapper, .nav-list li.menu-item:hover .menu-link-wrapper {
+        background-color: #120b09;
+    }
+
+    .nav-list li.menu-item.mobile-active .menu-link-wrapper a {
+        font-size: 16px;
+    }
+
+    /* Target specific header link for color */
+    .nav-list li.menu-item.mobile-active .menu-link-wrapper a {
+        color: #fcd176;
+        font-weight: 700;
+    }
+
+    /* Target toggle icon */
+    .nav-list li.menu-item.mobile-active .menu-link-wrapper::after {
+        color: #fcd176;
+    }
+
+    /* Reset/Ensure li has no bg so submenu contrasts */
+    .nav-list li.menu-item.mobile-active {
+        background-color: transparent;
+    }
+
+    /* Submenu Styling */
+    .mobile-submenu {
+        background-color: rgba(0,0,0,0.2);
+    }
+    
+    .nav-list li.menu-item:hover .mobile-submenu a,
+    .nav-list li.menu-item.active .mobile-submenu a, 
+    .nav-list li.menu-item.mobile-active .mobile-submenu a {
+        font-size: 0.8rem;
+        font-weight: 400;
+        color: #7a6b5d;
+    }
+
+    .mobile-submenu a {
+        display: block;
+        padding: 10px 30px 10px 50px; /* Indent */
+        font-size: 0.8rem;
+        color: #7a6b5d;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        transition: color 0.3s;
+    }
+
+    .mobile-submenu a:hover {
+        color: #fcd176 !important; /* Force gold on direct hover */
+    }
+
+    .nav-bg-strip {
+        display: none !important; 
+    }
+
+    /* Secondary Nav */
+    .secondary-nav-list {
+        padding-left: 30px;
+        gap: 20px;
+    }
+
+    .social-icons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        place-items: center;
+        padding-inline: 2rem;
+    }
+    
+    /* Hide Desktop Panel */
+    .submenu-panel {
+        display: none !important;
+    }
 }
 .overlay {
     position: fixed;
@@ -793,10 +1018,19 @@ body {
         font-size: 24px;
     }
 }
+
+.social-hidden-div {
+    display: none;
+}
+
 /* General Responsiveness */
 @media (max-width: 1024px) {
     .features-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .social-hidden-div {
+        display: block;
     }
 }
 
